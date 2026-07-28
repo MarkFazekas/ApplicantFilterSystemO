@@ -19,6 +19,6 @@ pyenv local afs3146
 ## Setup commands
 
 ```shell
-python -m pip install -r requirements/dev.txt
-gitlint install-hook
+pip install uv
+uv pip install -r manager_backend/requirements/dev.txt
 ```
