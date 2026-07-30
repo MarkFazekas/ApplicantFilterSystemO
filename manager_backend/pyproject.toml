@@ -15,16 +15,27 @@ select = ["ALL"]
 
 external = ["WPS"]
 
-# Avoid enforcing line-length violations (`E501`)
-# Avoid enforcing no-blank-line-before-class violations (`D211`)
-# Avoid enforcing multi-line-summary-second-line violations (`D213`)
-# Avoid enforcing Missing docstring in public package (`D104`) because nobody will read it.
-# The following rules may cause conflicts when used with the formatter: `COM812`, `D203`
-# The `format.indent-style="tab"` option is incompatible with `W191`
-# The `format.indent-style="tab"` option is incompatible with `D206`
-ignore = ["E501", "D211", "D213", "D104", "COM812", "D203", "W191", "D206"]
+ignore = [
+    # Avoid enforcing line-length violations (`E501`)
+    "E501",
+    # Avoid enforcing no-blank-line-before-class violations (`D211`)
+    "D211",
+    # Avoid enforcing multi-line-summary-second-line violations (`D213`)
+    "D213",
+    # Avoid enforcing Missing docstring in public module (`D100`) because nobody will read it.
+    "D100",
+    # Avoid enforcing Missing docstring in public package (`D104`) because nobody will read it.
+    "D104",
+    # Avoid enforcing Missing copyright notice at top of file (`CPY001`).
+    "CPY001",
+    # The following rules may cause conflicts when used with the formatter: `COM812`, `D203`
+    "COM812",
+    "D203",
+]
 
-fixable = []
+# Fix isort violations (I)
+# Fix flake8-type-checking violations (TC)
+fixable = ["I", "TC"]
 # Avoid trying to fix flake8-bugbear (`B`) violations.
 unfixable = ["B"]
 
@@ -65,7 +76,7 @@ line-length = 120
 
 [tool.ruff.format]
 quote-style = "double"
-indent-style = "tab"
+indent-style = "space"
 docstring-code-format = true
 
 [tool.lint.ruff.mccabe]
@@ -74,46 +85,3 @@ max-complexity = 10
 [tool.lint.ruff.pydocstyle]
 # Use Google-style docstrings.
 convention = "google"
-
-[flake8]
-extend-select = ["B901", "B902", "B903"]
-ignore = [
-    # Avoid enforcing Missing docstring in public package (`D104`) because nobody will read it.
-    "D104",
-    # Avoid f-string restrictions (`WPS305`, `WPS237`).
-    "WPS305",
-    "WPS237"
-]
-per-file-ignores = [
-    # Avoid enforcing Use of `assert` detected (`S101`) in tests files because it makes no sense.
-    # Avoid enforcing Found too many imported names from a module (`WPS235`) in tests files because it is valid for tests.
-    # Avoid enforcing Found too many imports (`WPS201`) it needs some refactor.
-    "**/tests/*:S101,WPS235,WPS201"
-]
-max_complexity = 10
-max_line_length = 120
-statistics = true
-count = true
-inline-quotes = "double"
-# Relates to WPS226
-max-string-usages = 5
-# Relates to WPS118
-max-name-length = 50
-# Relates to WPS202
-max-module-members = 20
-# Relates to WPS210
-max-local-variables = 10
-# Relates to WPS229
-max-try-body-length = 2
-# Relates to WPS221
-max-line-complexity = 20
-# Relates to WPS201
-max-imports = 15
-# Relates to WPS214
-max-methods = 10
-docstring-convention = "google"
-docstring_style = "google"
-strictness = "long"
-eradicate-aggressive = true
-dictionaries = ["en_US", "python", "technical", "pandas"]
-

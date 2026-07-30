@@ -4,7 +4,7 @@
 
 
 ```shell
-python -m ruff check --select I --fix
+python -m ruff check --select I,TC --fix
 python -m ruff format
 python -m ruff check .
 python -m flake8 .

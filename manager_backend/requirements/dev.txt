@@ -1,5 +1,9 @@
 -r base.txt
 
+# Required for local development, not required for Lambda deployment:
+chalice==1.33.0                         # AWS Microframework
+uv==0.12.0                              # An extremely fast Python package and project manager, written in Rust.
+
 # Lint tools:
 gitlint==0.19.1                         # Git commit message linter written in python, checks your commit messages for style.
 ruff==0.16.0                            # An extremely fast Python linter and code formatter, written in Rust.

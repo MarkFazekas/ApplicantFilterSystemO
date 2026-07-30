@@ -1,5 +1,2 @@
-uv==0.12.0                              # An extremely fast Python package and project manager, written in Rust.
-
-chalice==1.33.0                         # AWS Microframework
 boto3==1.43.57                          # The AWS SDK for Python
 
