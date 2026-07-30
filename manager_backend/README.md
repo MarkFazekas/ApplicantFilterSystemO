@@ -10,3 +10,17 @@ python -m ruff check .
 python -m flake8 .
 python -m mypy .
 ```
+
+# Chalice
+
+Setup:
+```shell
+chalice new-project manager_backend
+mv manager_backend/* ./*
+ln -s requirements/base.txt requirements.txt
+```
+
+Deployment:
+```shell
+chalice deploy --profile afsd1
+```
