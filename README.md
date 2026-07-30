@@ -72,14 +72,32 @@ java -Djava.library.path=dynamodb_local/DynamoDBLocal_lib -jar dynamodb_local/Dy
 Update the tar file from: https://s3-us-west-2.amazonaws.com/dynamodb-local
 
 ```shell
-aws configure --profile afsd1_dev
+nano ~/.aws/credentials
 ```
 
-AWS Access Key ID: DEVELOPERDATABASE  
-AWS Secret Access Key: FAKEKEY 
-Default region name: eu-demo-1  
+```ini
+[afsd1_dev]
+aws_access_key_id = DEVELOPERDATABASE
+aws_secret_access_key = FAKEKEY
+```
+
+Then add these:
+
+```shell
+nano ~/.aws/config
+```
+
+```ini
+[profile afsd1_dev]
+region = eu-demo-1
+services = local-services
+
+[services local-services]
+dynamodb =
+  endpoint_url = http://localhost:8000
+```
 
 Test DynamoDB
 ```shell
-aws dynamodb list-tables --endpoint-url http://localhost:8000 --profile afsd1_dev
+aws dynamodb list-tables --endpoint-url --profile afsd1_dev
 ```
