@@ -2,6 +2,7 @@
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
 
+# Lint:
 
 ```shell
 python -m ruff check --select I,TC --fix
@@ -13,19 +14,22 @@ python -m mypy .
 
 # Chalice
 
-Setup:
+## Setup from scratch:
+
 ```shell
 chalice new-project manager_backend
 mv manager_backend/* ./*
 ln -s requirements/base.txt requirements.txt
 ```
 
-Dev Deployment:
+## Dev Deployment:
+
 ```shell
 chalice deploy --profile afsd1 --stage dev
 ```
 
-Prod Deployment:
+## Prod Deployment:
+
 ```shell
 chalice deploy --profile afsd1 --stage prod
 ```
