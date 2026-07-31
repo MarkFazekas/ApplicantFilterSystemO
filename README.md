@@ -1,6 +1,8 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 [![gitlint](https://img.shields.io/badge/commit_lint-gitlint-blue)](https://github.com/jorisroovers/gitlint)
 
+# Python env
+
 ## Pyenv
 
 How to install: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
@@ -23,7 +25,7 @@ pip install uv
 uv pip install -r manager_backend/requirements/dev.txt
 ```
 
-## AWS Setup
+# AWS Setup
 
 1. Create root user with email address.  
 2. Setup MFA for root user.  
@@ -77,7 +79,7 @@ nano ~/.aws/credentials
 
 ```ini
 [afsd1_dev]
-aws_access_key_id = DEVELOPERDATABASE
+aws_access_key_id = DEVELOPERACCESSKEY
 aws_secret_access_key = FAKEKEY
 ```
 
@@ -99,5 +101,33 @@ dynamodb =
 
 Test DynamoDB
 ```shell
-aws dynamodb list-tables --endpoint-url --profile afsd1_dev
+aws dynamodb list-tables --profile afsd1_dev
+```
+
+### Create table
+
+```shell
+aws dynamodb create-table \
+  --table-name ApplicantFilterSystemDev \
+  --attribute-definitions \
+    AttributeName=pk,AttributeType=S \
+    AttributeName=sk,AttributeType=S \
+  --key-schema \
+    AttributeName=pk,KeyType=HASH \
+    AttributeName=sk,KeyType=RANGE \
+  --provisioned-throughput \
+    ReadCapacityUnits=2,WriteCapacityUnits=2 \
+  --profile afsd1_dev
+```
+
+## Real AWS DynamoDB
+
+Create DynamoDB:
+
+```shell
+aws cloudformation deploy \
+  --template-file dynamodb/cf_dev.json \
+  --stack-name applicant-filter-system-dev \
+  --profile afsd1 \
+  --no-fail-on-empty-changeset
 ```
