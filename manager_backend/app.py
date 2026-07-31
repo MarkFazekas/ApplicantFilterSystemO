@@ -1,8 +1,9 @@
 import uuid
 from typing import TYPE_CHECKING, cast
 
-import boto3
 from chalice import Chalice  # type: ignore[attr-defined]
+
+from chalicelib.infrastructure import db
 
 if TYPE_CHECKING:
     from chalice.app import Request
@@ -11,13 +12,11 @@ if TYPE_CHECKING:
 app = Chalice(app_name="manager_backend")
 app.debug = True
 
-table = boto3.resource("dynamodb").Table("ApplicantFilterSystemDev")
-
 
 @app.route("/")
 def index() -> dict[str, ScanOutputTableTypeDef]:
     """Asd."""
-    return {"table": table.scan()}
+    return {"table": db.get_table().scan()}
 
 
 @app.route("/hello/{name}")
@@ -30,5 +29,5 @@ def hello_name(name: str) -> dict[str, str]:
 def create_user() -> dict[str, str]:
     """Asd."""
     user_as_json = cast("Request", app.current_request).json_body
-    table.put_item(Item={"pk": f"uuid#{uuid.uuid4()}", "sk": f"uuid#{uuid.uuid4()}", **user_as_json})
+    db.get_table().put_item(Item={"pk": f"uuid#{uuid.uuid4()}", "sk": f"uuid#{uuid.uuid4()}", **user_as_json})
     return {"user": user_as_json}

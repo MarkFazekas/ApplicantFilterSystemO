@@ -12,7 +12,6 @@ mypy==2.3.0                             # Optional static typing for Python
 
 # Plugins for lint tools:
 wemake-python-styleguide==1.7.0         # The strictest and most opinionated python linter ever
-flake8-pyproject==1.2.4                 # Flake8 plug-in loading the configuration from pyproject.toml
 flake8-print==5.0.0                     # Flake8 plguin to check print-s in code.
 flake8-bugbear==25.11.29                # A plugin for Flake8 finding likely bugs and design problems in your program.
 flake8-assertive==2.2.0                 # flake8-assertive is a Flake8 extension that encourages using richer, more specific unittest assertions beyond just the typical assertEqual(a, b) and assertTrue(x) methods
