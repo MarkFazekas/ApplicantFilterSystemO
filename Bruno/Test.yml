@@ -1,0 +1,21 @@
+info:
+  name: Test
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{backend-base-url}}{{api-stage}}/users"
+  body:
+    type: json
+    data: |-
+      {
+        "Teszt": "user"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

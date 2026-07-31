@@ -20,7 +20,12 @@ mv manager_backend/* ./*
 ln -s requirements/base.txt requirements.txt
 ```
 
-Deployment:
+Dev Deployment:
 ```shell
-chalice deploy --profile afsd1
+chalice deploy --profile afsd1 --stage dev
+```
+
+Prod Deployment:
+```shell
+chalice deploy --profile afsd1 --stage prod
 ```

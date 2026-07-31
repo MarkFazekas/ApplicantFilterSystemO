@@ -1,10 +1,10 @@
 {
   "resources": [
     {
-      "name": "default-role",
+      "name": "api_handler_role",
       "resource_type": "iam_role",
-      "role_arn": "arn:aws:iam::072718160109:role/manager_backend-dev",
-      "role_name": "manager_backend-dev"
+      "role_arn": "arn:aws:iam::072718160109:role/manager_backend-dev-api_handler",
+      "role_name": "manager_backend-dev-api_handler"
     },
     {
       "name": "api_handler",
