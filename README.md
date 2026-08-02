@@ -5,10 +5,18 @@
 
 ## Pyenv
 
-How to install: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+How to install:   
+https://github.com/pyenv/pyenv/wiki#suggested-build-environment
 
+```shell
+curl https://pyenv.run | bash
+```
+
+How to update:  
+```shell
 cd ~/.pyenv/plugins/python-build/../.. && git pull && cd -
 pyenv install --list
+```
 
 Install:
 
@@ -62,6 +70,7 @@ Put it in your `.profile`/`.bashrc`
 
 ```shell
 export JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"
+export JAVA_HOME="/usr/lib/jvm/java-25-openjdk-amd64"
 export PATH="$JAVA_HOME/bin:$PATH"
 ```
 
