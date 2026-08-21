@@ -1,5 +1,5 @@
 [tool.mypy]
-python_version = "3.14"
+python_version = "3.12"
 strict = true
 
 warn_redundant_casts = true
@@ -69,8 +69,8 @@ exclude = [
     "venv",
 ]
 
-# Assume Python 3.14
-target-version = "py314"
+# Assume Python 3.12
+target-version = "py312"
 
 line-length = 120
 

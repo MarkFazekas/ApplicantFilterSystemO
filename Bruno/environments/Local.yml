@@ -1,6 +1,0 @@
-name: Local
-variables:
-  - name: backend-base-url
-    value: http://127.0.0.1:8001
-  - name: api-stage
-    value: ""

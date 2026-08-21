@@ -1,2 +1,5 @@
 boto3==1.43.57                          # The AWS SDK for Python
+PyJWT==2.13.0                           # JSON Web Token implementation in Python
 
+# Typing
+types-boto3[essential]==1.43.57         # Type annotations for boto3

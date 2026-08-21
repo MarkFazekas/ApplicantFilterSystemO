@@ -23,5 +23,6 @@ flake8-comprehensions==3.17.0           # A flake8 plugin to help you write bett
 flake8-spellcheck==0.28.0               # Flake8 Plugin that spellchecks variables, functions, classes and other bits of your python code.
 pep8-naming==0.15.1                     # Check your code against PEP 8 naming conventions.
 
-# Typing
-types-boto3[essential]==1.43.57         # Type annotations for boto3
+# Testing
+pytest==9.1.1                           # simple powerful testing with Python
+pytest-mock==3.15.1                     # Thin-wrapper around the mock package for easier use with pytest
