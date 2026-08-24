@@ -79,9 +79,9 @@ quote-style = "double"
 indent-style = "space"
 docstring-code-format = true
 
-[tool.lint.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 10
 
-[tool.lint.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 # Use Google-style docstrings.
 convention = "google"
