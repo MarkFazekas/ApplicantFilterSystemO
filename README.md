@@ -75,7 +75,7 @@ export PATH="$JAVA_HOME/bin:$PATH"
 ```
 
 ```shell
-wget -O dynamodb_local/dynamodb.tar.gz  https://d1ni2b6xgvw0s0.cloudfront.net/v2.x/dynamodb_local_2026-01-18.tar.gz
+wget -O dynamodb_local/dynamodb.tar.gz https://d1ni2b6xgvw0s0.cloudfront.net/v2.x/dynamodb_local_2026-01-18.tar.gz
 tar -C dynamodb_local -xzvf dynamodb_local/dynamodb.tar.gz
 java -Djava.library.path=dynamodb_local/DynamoDBLocal_lib -jar dynamodb_local/DynamoDBLocal.jar -dbPath dynamodb_local/databases -optimizeDbBeforeStartup -delayTransientStatuses -disableTelemetry -port 8000
 ```

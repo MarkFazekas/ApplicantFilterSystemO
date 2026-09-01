@@ -25,11 +25,43 @@ ln -s requirements/base.txt requirements.txt
 ## Dev Deployment:
 
 ```shell
-chalice deploy --profile afsd1 --stage dev
+python deploy.py chalice deploy --profile afsd1 --stage dev
+```
+
+## Un-deploy Dev:
+
+```shell
+chalice delete --profile afsd1 --stage dev
 ```
 
 ## Prod Deployment:
 
 ```shell
-chalice deploy --profile afsd1 --stage prod
+python deploy.py chalice deploy --profile afsd1 --stage prod
+```
+
+## Un-deploy Prod:
+
+```shell
+chalice delete --profile afsd1 --stage prod
+```
+
+## Running locally
+
+### 0. Create Env (first time)
+
+```shell
+cp .env.template .env
+```
+
+### 1. Load Env
+
+```shell
+source .env
+```
+
+### 2. Run
+
+```shell
+chalice local --port 8001 --no-autoreload --stage local
 ```

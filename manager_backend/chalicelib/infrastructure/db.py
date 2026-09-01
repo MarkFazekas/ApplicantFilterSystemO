@@ -1,3 +1,5 @@
+"""Database handling infrastructure."""
+
 from functools import cache
 
 import boto3
