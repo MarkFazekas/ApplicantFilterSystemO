@@ -1,8 +1,0 @@
-name: DEV Deployed
-variables:
-  - name: backend-base-url
-    value: https://gp50rsz607.execute-api.eu-west-1.amazonaws.com
-  - name: api-stage
-    value: /api
-  - secret: true
-    name: token

@@ -1,11 +1,11 @@
 info:
   name: Login
   type: http
-  seq: 4
+  seq: 2
 
 http:
   method: POST
-  url: "{{backend-base-url}}{{api-stage}}/login"
+  url: "{{backend-base-url}}{{api-stage}}/auth/login"
   body:
     type: json
     data: |-
@@ -20,7 +20,9 @@ runtime:
     - type: after-response
       code: |-
         var data = res.getBody(); 
-        bru.setEnvVar("token", data.access_token);
+        if ("access_token" in data){
+          bru.setEnvVar("token", data.access_token);
+        }
 
 settings:
   encodeUrl: true
