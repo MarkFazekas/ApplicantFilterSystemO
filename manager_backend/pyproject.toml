@@ -1,5 +1,5 @@
 [tool.mypy]
-python_version = "3.14"
+python_version = "3.12"
 strict = true
 
 warn_redundant_casts = true
@@ -9,6 +9,7 @@ check_untyped_defs = true
 no_implicit_reexport = true
 
 disallow_untyped_defs = true
+plugins = ['pydantic.mypy']
 
 [tool.ruff.lint]
 select = ["ALL"]
@@ -22,15 +23,16 @@ ignore = [
     "D211",
     # Avoid enforcing multi-line-summary-second-line violations (`D213`)
     "D213",
-    # Avoid enforcing Missing docstring in public module (`D100`) because nobody will read it.
-    "D100",
     # Avoid enforcing Missing docstring in public package (`D104`) because nobody will read it.
     "D104",
     # Avoid enforcing Missing copyright notice at top of file (`CPY001`).
     "CPY001",
-    # The following rules may cause conflicts when used with the formatter: `COM812`, `D203`
+    # Avoid enforcing Use of assert detected (`S101`), because it can be useful for internal APIs, and we are not optimizing during deployment.
+    "S101",
+    # Avoid enforcing exception name should be named with an Error suffix, because we use Information and Warning level Exceptions as well.
+    "N818",
+    # The following rules may cause conflicts when used with the formatter: `COM812`
     "COM812",
-    "D203",
 ]
 
 # Fix isort violations (I)
@@ -69,8 +71,8 @@ exclude = [
     "venv",
 ]
 
-# Assume Python 3.14
-target-version = "py314"
+# Target Python 3.12 compatibility
+target-version = "py312"
 
 line-length = 120
 

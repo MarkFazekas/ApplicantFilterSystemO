@@ -1,1 +1,12 @@
+instrumentations
+deliverability
 chalicelib
+structlog
+validator
+pydantic
+finditer
+dotenv
+pbkdf2
+hmac
+i18n
+exc
