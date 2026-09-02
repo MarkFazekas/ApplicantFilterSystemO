@@ -18,7 +18,15 @@ cd ~/.pyenv/plugins/python-build/../.. && git pull && cd -
 pyenv install --list
 ```
 
-Install:
+### Install 3.14.6:
+
+```shell
+env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' pyenv install 3.12.3
+pyenv virtualenv 3.12.3 afs3123
+pyenv local afs3123
+```
+
+### Install 3.12.3:
 
 ```shell
 env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' pyenv install 3.12.3
