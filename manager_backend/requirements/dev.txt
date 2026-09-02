@@ -25,3 +25,8 @@ flake8-comprehensions==3.17.0           # A flake8 plugin to help you write bett
 flake8-spellcheck==0.28.0               # Flake8 Plugin that spellchecks variables, functions, classes and other bits of your python code.
 flake8-pydantic==0.4.0                  # A flake8 plugin to check Pydantic related code.
 pep8-naming==0.15.1                     # Check your code against PEP 8 naming conventions.
+
+# Testing
+pytest==9.1.1                           # simple powerful testing with Python
+pytest-mock==3.15.1                     # Thin-wrapper around the mock package for easier use with pytest
+moto==5.2.3                             # A library that allows you to easily mock out tests based on AWS infrastructure

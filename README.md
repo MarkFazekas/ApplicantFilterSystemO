@@ -18,12 +18,20 @@ cd ~/.pyenv/plugins/python-build/../.. && git pull && cd -
 pyenv install --list
 ```
 
-Install:
+### Install 3.14.6:
 
 ```shell
 env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' pyenv install 3.14.6
 pyenv virtualenv 3.14.6 afs3146
 pyenv local afs3146
+```
+
+### Install 3.12.3:
+
+```shell
+env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' pyenv install 3.12.3
+pyenv virtualenv 3.12.3 afs3123
+pyenv local afs3123
 ```
 
 ## Setup commands
@@ -106,6 +114,24 @@ services = local-services
 [services local-services]
 dynamodb =
   endpoint_url = http://localhost:8000
+```
+
+```Dockerfile
+RUN mkdir -p "${HOME}/.aws" \
+    && cat > "${HOME}/.aws/credentials" <<'EOF'
+[afsd1_dev]
+aws_access_key_id = DEVELOPERACCESSKEY
+aws_secret_access_key = FAKEKEY
+EOF
+    cat > "${HOME}/.aws/config" <<'EOF'
+[profile afsd1_dev]
+region = eu-demo-1
+services = local-services
+
+[services local-services]
+dynamodb =
+  endpoint_url = http://localhost:8000
+EOF
 ```
 
 Test DynamoDB
