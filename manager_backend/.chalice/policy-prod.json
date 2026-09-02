@@ -1,0 +1,29 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:*:logs:*:*:*"
+    },
+    {
+      "Sid": "AllowApplicantFilterSystemScan",
+      "Effect": "Allow",
+      "Action": "dynamodb:*",
+      "Resource": [
+        "arn:aws:dynamodb:eu-west-1:072718160109:table/ApplicantFilterSystemProd",
+        "arn:aws:dynamodb:eu-west-1:072718160109:table/ApplicantFilterSystemProd/index/*"
+      ]
+    },
+    {
+      "Sid": "DenyDeletingApplicantFilterSystemProd",
+      "Effect": "Deny",
+      "Action": "dynamodb:DeleteTable",
+      "Resource": "arn:aws:dynamodb:eu-west-1:072718160109:table/ApplicantFilterSystemProd"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Core
+boto3==1.43.57                          # The AWS SDK for Python
+PyJWT==2.13.0                           # JSON Web Token implementation in Python
+pydantic[email]==2.13.5                 # Data validation using Python type hints
+email-validator==2.3.0                  # A robust email address syntax and deliverability validation library.
+PyOTP==2.10.0                           # Python One Time Password Library
+
+# Typing
+types-boto3[essential]==1.43.57         # Type annotations for boto3

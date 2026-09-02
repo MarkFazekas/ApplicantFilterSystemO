@@ -1,0 +1,28 @@
+{
+  "version": "2.0",
+  "app_name": "manager_backend",
+  "stages": {
+    "local": {
+      "api_gateway_stage": "api",
+      "autogen_policy": false
+    },
+    "dev": {
+      "api_gateway_stage": "api",
+      "autogen_policy": false,
+      "environment_variables": {
+        "TABLE_NAME": "ApplicantFilterSystemDev",
+        "CHECK_EMAIL_DELIVERABILITY": "true",
+        "JWT_SECRET": "{{ENV:DEV_JWT_SECRET}}"
+      }
+    },
+    "prod": {
+      "api_gateway_stage": "api",
+      "autogen_policy": false,
+      "environment_variables": {
+        "TABLE_NAME": "ApplicantFilterSystemProd",
+        "CHECK_EMAIL_DELIVERABILITY": "true",
+        "JWT_SECRET": "{{ENV:PROD_JWT_SECRET}}"
+      }
+    }
+  }
+}

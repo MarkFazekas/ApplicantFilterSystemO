@@ -1,0 +1,8 @@
+name: Dev Deployed
+variables:
+  - secret: true
+    name: backend-base-url
+  - name: api-stage
+    value: /api
+  - secret: true
+    name: token

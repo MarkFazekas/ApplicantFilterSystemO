@@ -1,0 +1,22 @@
+info:
+  name: Register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{backend-base-url}}{{api-stage}}/auth/register"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "teszt@furnariusrufus.com",
+        "password": "Pass1234"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
