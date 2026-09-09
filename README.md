@@ -153,6 +153,11 @@ aws dynamodb create-table \
   --provisioned-throughput \
     ReadCapacityUnits=2,WriteCapacityUnits=2 \
   --profile afsd1_dev
+
+aws dynamodb update-time-to-live \
+  --table-name ApplicantFilterSystemDev \
+  --time-to-live-specification Enabled=true,AttributeName=expire_at \
+  --profile afsd1_dev
 ```
 
 ## Real AWS DynamoDB
