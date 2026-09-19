@@ -1,4 +1,5 @@
 *
+!service.sh
 !databases/
 !databases/.gitkeep
 !.gitignore

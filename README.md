@@ -68,7 +68,9 @@ chmod 600 ~/.aws/credentials
 aws sts get-caller-identity --profile afsd1
 ```
 
-## Local DynamoDB Setup
+# Local DynamoDB
+
+## Setup
 
 ```shell
 sudo apt install default-jre
@@ -85,7 +87,6 @@ export PATH="$JAVA_HOME/bin:$PATH"
 ```shell
 wget -O dynamodb_local/dynamodb.tar.gz https://d1ni2b6xgvw0s0.cloudfront.net/v2.x/dynamodb_local_2026-01-18.tar.gz
 tar -C dynamodb_local -xzvf dynamodb_local/dynamodb.tar.gz
-java -Djava.library.path=dynamodb_local/DynamoDBLocal_lib -jar dynamodb_local/DynamoDBLocal.jar -dbPath dynamodb_local/databases -optimizeDbBeforeStartup -delayTransientStatuses -disableTelemetry -port 8000
 ```
 
 Update the tar file from: https://s3-us-west-2.amazonaws.com/dynamodb-local
@@ -134,30 +135,30 @@ dynamodb =
 EOF
 ```
 
-Test DynamoDB
+## Run the DynamoDB
+
+### Start & Migration
+
 ```shell
-aws dynamodb list-tables --profile afsd1_dev
+./dynamodb_local/service.sh clean-start
 ```
 
-### Create table
+### Start
 
 ```shell
-aws dynamodb create-table \
-  --table-name ApplicantFilterSystemDev \
-  --attribute-definitions \
-    AttributeName=pk,AttributeType=S \
-    AttributeName=sk,AttributeType=S \
-  --key-schema \
-    AttributeName=pk,KeyType=HASH \
-    AttributeName=sk,KeyType=RANGE \
-  --provisioned-throughput \
-    ReadCapacityUnits=2,WriteCapacityUnits=2 \
-  --profile afsd1_dev
+./dynamodb_local/service.sh start
+```
 
-aws dynamodb update-time-to-live \
-  --table-name ApplicantFilterSystemDev \
-  --time-to-live-specification Enabled=true,AttributeName=expire_at \
-  --profile afsd1_dev
+### Stop
+
+```shell
+./dynamodb_local/service.sh stop
+```
+
+### Test
+
+```shell
+aws dynamodb list-tables --profile afsd1_dev
 ```
 
 ## Real AWS DynamoDB
