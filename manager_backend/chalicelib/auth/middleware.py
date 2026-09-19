@@ -1,6 +1,7 @@
 """Auth package middlewares."""
 
 from collections.abc import Callable
+from http import HTTPStatus
 from typing import TYPE_CHECKING
 
 from chalice.app import Blueprint, Request, Response
@@ -24,7 +25,7 @@ def check_auth_token(event: Request, get_response: Callable[[Request], Response]
         token = event.headers.get("Authorization", "")
         validated: JWTObject | None = JWTManager.decode_access_token(token=token)
         if not validated:
-            raise AFSErrorException(INVALID_OR_EXPIRED_TOKEN)
+            raise AFSErrorException(INVALID_OR_EXPIRED_TOKEN, status_code=HTTPStatus.UNAUTHORIZED)
 
         event.context["token"] = validated
 

@@ -9,7 +9,7 @@ from chalice.app import Blueprint, Response
 from chalicelib.auth.classes import LoginAndRegistrationRequest, User, UserItem
 from chalicelib.auth.constants import JWT_EXPIRATION_SECONDS
 from chalicelib.auth.db import create_user, get_user_by_email
-from chalicelib.auth.i18n import INVALID_CREDENTIALS
+from chalicelib.auth.i18n import INVALID_CREDENTIALS, PROTECTED_SUCCESS
 from chalicelib.auth.managers import EmailValidatorManager, JWTManager, PasswordManager
 from chalicelib.common.exceptions import AFSErrorException
 from chalicelib.common.functions import get_user_token, serialize_request
@@ -50,11 +50,17 @@ def login() -> Response:
     request: LoginAndRegistrationRequest = serialize(LoginAndRegistrationRequest)
     user: UserItem | None = get_user_by_email(email=request.email)
     if not user:
-        raise AFSErrorException(INVALID_CREDENTIALS)
+        raise AFSErrorException(
+            INVALID_CREDENTIALS,
+            status_code=HTTPStatus.UNAUTHORIZED,
+        )
 
     verified = PasswordManager.verify_password(request.password, user.hashed_password)
     if not verified:
-        raise AFSErrorException(INVALID_CREDENTIALS)
+        raise AFSErrorException(
+            INVALID_CREDENTIALS,
+            status_code=HTTPStatus.UNAUTHORIZED,
+        )
 
     token = JWTManager.create_access_token(email=user.email)
 
@@ -72,4 +78,4 @@ def login() -> Response:
 def me() -> Response:
     """Check the current logged-in user."""
     token = get_token()
-    return Response(body={"message": "protected", "user": token.email}, status_code=HTTPStatus.OK)
+    return Response(body={"message": PROTECTED_SUCCESS, "user": token.email}, status_code=HTTPStatus.OK)

@@ -1,5 +1,6 @@
 """User management and authentication service for DynamoDB single-table design."""
 
+from http import HTTPStatus
 from typing import Any
 
 from botocore.exceptions import ClientError
@@ -53,7 +54,11 @@ def create_user(user: User) -> UserItem:
     except ClientError as exc:
         error_code = exc.response.get("Error", {}).get("Code")
         if error_code == CONDITIONAL_CHECK_FAILED:
-            raise AFSErrorException(detail=USER_WITH_EMAIL_EXISTS, format_map={"email": user.email}) from exc
+            raise AFSErrorException(
+                detail=USER_WITH_EMAIL_EXISTS,
+                format_map={"email": user.email},
+                status_code=HTTPStatus.CONFLICT,
+            ) from exc
         raise
 
     return user_item

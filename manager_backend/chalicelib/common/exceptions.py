@@ -72,25 +72,25 @@ class AFSErrorException(BaseAPIException):
     """Planned business logic-level errors."""
 
     default_error_type = ExceptionTypes.ERROR
-    default_status_code = HTTPStatus.CONFLICT
+    default_status_code = HTTPStatus.BAD_REQUEST
 
 
 class AFSWarningException(BaseAPIException):
     """Planned business logic-level warnings."""
 
     default_error_type = ExceptionTypes.WARNING
-    default_status_code = HTTPStatus.CONFLICT
+    default_status_code = HTTPStatus.BAD_REQUEST
 
 
 class AFSInformationException(BaseAPIException):
     """Planned business logic-level informational-exceptions."""
 
     default_error_type = ExceptionTypes.INFORMATION
-    default_status_code = HTTPStatus.CONFLICT
+    default_status_code = HTTPStatus.BAD_REQUEST
 
 
 class AFSFieldException(BaseAPIException):
     """Field level validation errors."""
 
     default_error_type = ExceptionTypes.VALIDATION_ERROR
-    default_status_code = HTTPStatus.CONFLICT
+    default_status_code = HTTPStatus.UNPROCESSABLE_ENTITY

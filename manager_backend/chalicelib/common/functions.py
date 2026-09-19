@@ -1,5 +1,7 @@
 """This file contains the serializer related functions."""
 
+from http import HTTPStatus
+
 from chalice.app import Blueprint
 from pydantic import BaseModel
 
@@ -32,5 +34,5 @@ def get_user_token(blueprint: Blueprint) -> JWTObject:
     """
     token: JWTObject | None = blueprint.current_request.context.get("token")
     if not token:
-        raise AFSErrorException(INVALID_OR_EXPIRED_TOKEN)
+        raise AFSErrorException(INVALID_OR_EXPIRED_TOKEN, status_code=HTTPStatus.UNAUTHORIZED)
     return token

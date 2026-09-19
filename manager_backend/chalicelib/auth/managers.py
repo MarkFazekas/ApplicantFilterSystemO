@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import secrets
 from datetime import UTC, datetime, timedelta
+from http import HTTPStatus
 
 import jwt
 import pyotp
@@ -57,6 +58,7 @@ class EmailValidatorManager:
                     "email": email,
                     "reason": str(exc),
                 },
+                status_code=HTTPStatus.UNPROCESSABLE_ENTITY,
             ) from exc
 
 

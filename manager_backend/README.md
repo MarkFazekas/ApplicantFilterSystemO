@@ -5,6 +5,7 @@
 # Lint:
 
 ```shell
+cd manager_backend
 python -m ruff check --select I,TC --fix
 python -m ruff format
 python -m ruff check .
@@ -25,24 +26,28 @@ ln -s requirements/base.txt requirements.txt
 ## Dev Deployment:
 
 ```shell
+cd manager_backend
 python deploy.py chalice deploy --profile afsd1 --stage dev
 ```
 
 ## Un-deploy Dev:
 
 ```shell
+cd manager_backend
 chalice delete --profile afsd1 --stage dev
 ```
 
 ## Prod Deployment:
 
 ```shell
+cd manager_backend
 python deploy.py chalice deploy --profile afsd1 --stage prod
 ```
 
 ## Un-deploy Prod:
 
 ```shell
+cd manager_backend
 chalice delete --profile afsd1 --stage prod
 ```
 
@@ -63,5 +68,15 @@ source .env
 ### 2. Run
 
 ```shell
+chalice local --port 8001 --no-autoreload --stage local
+```
+
+### Final command
+
+```shell
+cd manager_backend
+set -a
+source .env
+set +a
 chalice local --port 8001 --no-autoreload --stage local
 ```
