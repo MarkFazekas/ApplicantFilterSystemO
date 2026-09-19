@@ -7,6 +7,9 @@ pydantic
 finditer
 dotenv
 pbkdf2
+base32
+pyotp
+TOTP
 hmac
 i18n
 exc

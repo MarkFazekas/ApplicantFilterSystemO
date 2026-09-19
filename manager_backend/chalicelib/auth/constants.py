@@ -11,6 +11,12 @@ HASH_NAME: Final[str] = "sha256"
 PASSWORD_PART_DELIMITER: Final[str] = "$"  # noqa: S105
 HASH_PARTS_COUNT: Final[int] = 2
 
+# - TOTPManager
+TOTP_ISSUER_NAME: Final[str] = "Applicant Filter System"
+TOTP_CODE_LENGTH: Final[int] = 6
+# Accept the neighbouring time windows too, to tolerate clock drifts.
+TOTP_VALIDATION_WINDOW: Final[int] = 1
+
 # - JWTManager
 BEARER_PREFIX: Final[str] = "Bearer "
 JWT_ALGORITHM: Final[str] = "HS256"

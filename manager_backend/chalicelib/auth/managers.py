@@ -6,6 +6,7 @@ import secrets
 from datetime import UTC, datetime, timedelta
 
 import jwt
+import pyotp
 from email_validator import EmailNotValidError, validate_email
 from pydantic import ValidationError
 
@@ -20,6 +21,8 @@ from chalicelib.auth.constants import (
     PASSWORD_PART_DELIMITER,
     PBKDF2_ITERATION_COUNT,
     SALT_BYTE_COUNT,
+    TOTP_ISSUER_NAME,
+    TOTP_VALIDATION_WINDOW,
 )
 from chalicelib.auth.i18n import NON_DELIVERABLE_EMAIL
 from chalicelib.common.exceptions import AFSErrorException
@@ -105,6 +108,45 @@ class PasswordManager:
             PBKDF2_ITERATION_COUNT,
         )
         return hmac.compare_digest(derived.hex(), expected_hex)
+
+
+class TOTPManager:
+    """Time-based one time password manager."""
+
+    @classmethod
+    def generate_secret(cls) -> str:
+        """Generate a new base32 encoded TOTP shared secret.
+
+        Returns:
+            The generated shared secret.
+        """
+        return pyotp.random_base32()
+
+    @classmethod
+    def build_provisioning_uri(cls, email: str, secret: str) -> str:
+        """Build the otpauth provisioning URI of an authenticator application.
+
+        Args:
+            email: The user email address.
+            secret: The TOTP shared secret of the user.
+
+        Returns:
+            The otpauth URI, which can be rendered as a QR code.
+        """
+        return pyotp.TOTP(secret).provisioning_uri(name=email, issuer_name=TOTP_ISSUER_NAME)
+
+    @classmethod
+    def verify_code(cls, secret: str, code: str) -> bool:
+        """Verify a one time password against the shared secret of the user.
+
+        Args:
+            secret: The TOTP shared secret of the user.
+            code: The one time password sent by the user.
+
+        Returns:
+            True if the code is valid, False otherwise.
+        """
+        return pyotp.TOTP(secret).verify(code, valid_window=TOTP_VALIDATION_WINDOW)
 
 
 class JWTManager:
